@@ -18,6 +18,7 @@ transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 
 [node name="HealthBar" type="ProgressBar" parent="Pivot/Camera3D"]
 offset_right = 172.0
 offset_bottom = 27.0
+step = 1.0
 show_percentage = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

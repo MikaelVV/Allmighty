@@ -17,6 +17,10 @@ signal killed()
 # Haetaan painovoima projekti asetuksista.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+func _ready() -> void:
+	HealthBar.max_value = max_health
+	_set_heatlhbar()
+
 # Function "kuuntelee" kaikkia inputteja, joka tässä tapauksessa on hiiri.
 # ja määrittelee hiiren liikkuvuuden kameran kanssa.
 func _unhandled_input(event: InputEvent) -> void:
@@ -30,13 +34,14 @@ func _unhandled_input(event: InputEvent) -> void:
 			camera.rotate_x(-event.relative.y * 0.01)
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90)) # Tässä limitoidaan pelaajan kameran rotaatiota, että pelaaja ei voi katsoa 360 astetta ympäri.
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	# Määritellään pelaajan painovoima.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		damage()
 
 	# Määritellään pelaajan suunta inputit. Näitä voi lisäillä, kun menee Project -> Project Settings ja Input Map.
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -51,9 +56,10 @@ func _physics_process(delta):
 	move_and_slide()
 
 #Määritellään pelaajan ottama damagen määrä.
-func damage(amount) -> void:
-	amount == 10
+func damage() -> void:
+	var amount = 10
 	_set_health(health - amount)
+	_set_heatlhbar()
 
 #Nimensä mukainen funktio. Tässä toteutetaan kaikki logiikka, jolla pelaaja tuhotaan.
 func kill_player():
@@ -64,9 +70,10 @@ func kill_player():
 func _set_health(value):
 	var prev_health = health
 	health = clamp(value, 0, max_health)
-	HealthBar.value == health
 	if health != prev_health:
 		emit_signal("health_updated", health)
 		if health == 0:
 			kill_player()
 	
+func _set_heatlhbar() -> void:
+	HealthBar.value = health
