@@ -10,6 +10,7 @@ signal killed()
 
 # Määritellään pelaajan health, pivot ja camera variablet.
 @onready var health = max_health : set = _set_health
+@onready var HealthBar := $Pivot/Camera3D/HealthBar
 @onready var pivot := $Pivot
 @onready var camera := $Pivot/Camera3D
 
@@ -50,7 +51,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 #Määritellään pelaajan ottama damagen määrä.
-func damage(amount):
+func damage(amount) -> void:
 	_set_health(health - amount)
 
 #Nimensä mukainen funktio. Tässä toteutetaan kaikki logiikka, jolla pelaaja tuhotaan.
@@ -61,6 +62,7 @@ func kill_player():
 func _set_health(value):
 	var prev_health = health
 	health = clamp(value, 0, max_health)
+	HealthBar == health
 	if health != prev_health:
 		emit_signal("health_updated", health)
 		if health == 0:
