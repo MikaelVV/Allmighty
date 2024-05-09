@@ -52,17 +52,19 @@ func _physics_process(delta):
 
 #Määritellään pelaajan ottama damagen määrä.
 func damage(amount) -> void:
+	amount == 10
 	_set_health(health - amount)
 
 #Nimensä mukainen funktio. Tässä toteutetaan kaikki logiikka, jolla pelaaja tuhotaan.
 func kill_player():
+	queue_free()
 	pass
 
 # Tässä funktiossa määrittellään pelaajan nykyinen ja edellinen health value. Myös toteutetaan kill_player funktio, jos pelaajan health value on 0.
 func _set_health(value):
 	var prev_health = health
 	health = clamp(value, 0, max_health)
-	HealthBar == health
+	HealthBar.value == health
 	if health != prev_health:
 		emit_signal("health_updated", health)
 		if health == 0:
