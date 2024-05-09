@@ -1,7 +1,19 @@
-[gd_scene format=3 uid="uid://bd4rbqk0yn5xu"]
+[gd_scene load_steps=2 format=3 uid="uid://bd4rbqk0yn5xu"]
+
+[ext_resource type="Script" path="res://Scripts/OptionsMenuController.gd" id="1_706di"]
 
 [node name="OptionsMenu" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Buttons" type="Node2D" parent="."]
+
+[node name="BackButton" type="Button" parent="Buttons"]
+offset_left = -80.0
+offset_top = -14.0
+offset_right = 80.0
+offset_bottom = 17.0
+text = "Back To Main Menu"
+script = ExtResource("1_706di")
+
+[connection signal="pressed" from="Buttons/BackButton" to="Buttons/BackButton" method="_on_pressed"]
