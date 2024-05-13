@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgfgx01ebktag"]
+[gd_scene load_steps=5 format=3 uid="uid://cgfgx01ebktag"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_pdh2t"]
+[ext_resource type="Script" path="res://Scripts/PauseMenuController.gd" id="2_whot4"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kxr3s"]
 
@@ -23,6 +24,7 @@ show_percentage = false
 
 [node name="PauseMenu" type="Control" parent="Pivot/Camera3D"]
 process_mode = 2
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -35,6 +37,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_whot4")
 
 [node name="MarginContainer" type="MarginContainer" parent="Pivot/Camera3D/PauseMenu"]
 layout_mode = 0
@@ -57,3 +60,6 @@ mesh = SubResource("CapsuleMesh_kxr3s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_d2c24")
+
+[connection signal="pressed" from="Pivot/Camera3D/PauseMenu/MarginContainer/VBoxContainer/ResumeGame" to="Pivot/Camera3D/PauseMenu" method="_on_resume_game_pressed"]
+[connection signal="pressed" from="Pivot/Camera3D/PauseMenu/MarginContainer/VBoxContainer/ReturnToMainMenu" to="Pivot/Camera3D/PauseMenu" method="_on_return_to_main_menu_pressed"]

@@ -4,6 +4,8 @@ signal health_updated(health)
 signal killed
 signal taking_damage
 
+var paused = false
+
 
 @export var max_health = 100
 @export var SPEED = 10
@@ -33,8 +35,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			pivot.rotate_y(-event.relative.x * 0.01)
 			camera.rotate_x(-event.relative.y * 0.01)
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60)) # Tässä limitoidaan pelaajan kameran rotaatiota, että pelaaja ei voi katsoa 360 astetta ympäri.
-	if event.is_action_pressed("ui_cancel"): # ui_cancel tarkoittaa Esc näppäintä.
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	if event.is_action_pressed("pause"): # ui_cancel tarkoittaa Esc näppäintä.
+		pauseGame()
+		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta) -> void:
 	# Määritellään pelaajan painovoima.
@@ -83,8 +86,8 @@ func _set_heatlhbar() -> void:
 	HealthBar.value = health
 	
 
-func pauseGame(state):
-	if state:
+func pauseGame():
+	if paused:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		pause_menu.hide()
 		get_tree().paused = false
@@ -95,3 +98,5 @@ func pauseGame(state):
 		
 func pauseMenu():
 	pass
+
+
