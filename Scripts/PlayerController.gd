@@ -81,8 +81,10 @@ func _set_health(value):
 		emit_signal("health_updated", health)
 		if health == 0:
 			kill_player()
-	
+
+# Asettaa Healthbarin värin ja määrittää sille valuen.
 func _set_heatlhbar() -> void:
+	HealthBar.modulate = Color.DARK_RED
 	HealthBar.value = health
 	
 
@@ -95,6 +97,3 @@ func pauseGame():
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().paused = true
 		pause_menu.show()
-		
-func pauseMenu():
-	pass
