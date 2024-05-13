@@ -1,11 +1,15 @@
+class_name player
+
 extends CharacterBody3D
 
 signal health_updated(health)
 signal killed
 signal taking_damage
 
+
 var paused = false
 
+@export var amount = 10
 
 @export var max_health = 100
 @export var SPEED = 10
@@ -17,7 +21,7 @@ var paused = false
 @onready var pivot := $Pivot
 @onready var camera := $Pivot/Camera3D
 @onready var pause_menu := $Pivot/Camera3D/PauseMenu
-
+@onready var body := $MeshInstance3D
 # Haetaan painovoima projekti asetuksista.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -60,18 +64,30 @@ func _physics_process(delta) -> void:
 
 	move_and_slide()
 
+
+#pelaaja ottaa lämää kun osuu collideriin samas layeris ku vihu
+func _on_area_3d_body_entered(body : Node3D):
+	if body.is_in_group("enemy"):
+		print ("ai vittu")
+	taking_damage.emit()
+	_set_health(health - amount)
+	_set_heatlhbar()
+	
+
+
 #Määritellään pelaajan ottama damagen määrä.
 func damage() -> void:
-	var amount = 10
 	taking_damage.emit()
 	_set_health(health - amount)
 	_set_heatlhbar()
 
 #Nimensä mukainen funktio. Tässä toteutetaan kaikki logiikka, jolla pelaaja tuhotaan.
 func kill_player():
-	killed.emit()
+	#killed.emit()
 	print("Kuolit!")
-	queue_free()
+	#queue_free()
+	body.visible = false
+
 
 # Tässä funktiossa määrittellään pelaajan nykyinen ja edellinen health value. Myös toteutetaan kill_player funktio, jos pelaajan health value on 0.
 func _set_health(value):
