@@ -1,7 +1,8 @@
 extends CharacterBody3D
 
 signal health_updated(health)
-signal killed()
+signal killed
+signal taking_damage
 
 
 @export var max_health = 100
@@ -13,6 +14,7 @@ signal killed()
 @onready var HealthBar := $Pivot/Camera3D/HealthBar
 @onready var pivot := $Pivot
 @onready var camera := $Pivot/Camera3D
+@onready var pause_menu := $Pivot/Camera3D/PauseMenu
 
 # Haetaan painovoima projekti asetuksista.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -26,13 +28,13 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	elif event.is_action_pressed("ui_cancel"): # ui_cancel tarkoittaa Esc näppäintä.
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion: # Alla määrittellään hiiren herkkyys.
 			pivot.rotate_y(-event.relative.x * 0.01)
 			camera.rotate_x(-event.relative.y * 0.01)
-			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90)) # Tässä limitoidaan pelaajan kameran rotaatiota, että pelaaja ei voi katsoa 360 astetta ympäri.
+			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60)) # Tässä limitoidaan pelaajan kameran rotaatiota, että pelaaja ei voi katsoa 360 astetta ympäri.
+	if event.is_action_pressed("ui_cancel"): # ui_cancel tarkoittaa Esc näppäintä.
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta) -> void:
 	# Määritellään pelaajan painovoima.
@@ -58,13 +60,15 @@ func _physics_process(delta) -> void:
 #Määritellään pelaajan ottama damagen määrä.
 func damage() -> void:
 	var amount = 10
+	taking_damage.emit()
 	_set_health(health - amount)
 	_set_heatlhbar()
 
 #Nimensä mukainen funktio. Tässä toteutetaan kaikki logiikka, jolla pelaaja tuhotaan.
 func kill_player():
+	killed.emit()
+	print("Kuolit!")
 	queue_free()
-	pass
 
 # Tässä funktiossa määrittellään pelaajan nykyinen ja edellinen health value. Myös toteutetaan kill_player funktio, jos pelaajan health value on 0.
 func _set_health(value):
@@ -77,3 +81,17 @@ func _set_health(value):
 	
 func _set_heatlhbar() -> void:
 	HealthBar.value = health
+	
+
+func pauseGame(state):
+	if state:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		pause_menu.hide()
+		get_tree().paused = false
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().paused = true
+		pause_menu.show()
+		
+func pauseMenu():
+	pass
