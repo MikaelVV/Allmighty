@@ -11,6 +11,7 @@ func _process(_delta):
 
 
 func _on_pressed():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
 

@@ -98,5 +98,3 @@ func pauseGame():
 		
 func pauseMenu():
 	pass
-
-
