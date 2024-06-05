@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bocxk78vocmjq"]
+[gd_scene load_steps=7 format=3 uid="uid://bocxk78vocmjq"]
 
 [ext_resource type="PackedScene" uid="uid://cgfgx01ebktag" path="res://Scenes/player.tscn" id="1_b2jon"]
+[ext_resource type="PackedScene" uid="uid://bk1t22g35fiax" path="res://Props/Tree01.glb" id="3_1qfrd"]
 [ext_resource type="Script" path="res://Scripts/enemy_test.gd" id="3_t7efo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ykaip"]
@@ -41,3 +42,12 @@ shape = SubResource("SphereShape3D_34m0a")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Enemy"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.203319, 0.130224, 0)
+
+[node name="Tree01" parent="." instance=ExtResource("3_1qfrd")]
+transform = Transform3D(0.956682, 0, -0.291136, 0, 1, 0, 0.291136, 0, 0.956682, -22.4231, 1.61097, 18.6813)
+
+[node name="Tree02" parent="." instance=ExtResource("3_1qfrd")]
+transform = Transform3D(0.785209, 0, 0.619231, 0, 1, 0, -0.619231, 0, 0.785209, -19.2732, 1.61097, 21.6707)
+
+[node name="Tree03" parent="." instance=ExtResource("3_1qfrd")]
+transform = Transform3D(0.50142, 0, 0.865204, 0, 1, 0, -0.865204, 0, 0.50142, -14.024, 1.61097, 23.8683)
