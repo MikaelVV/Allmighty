@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bocxk78vocmjq"]
+[gd_scene load_steps=11 format=3 uid="uid://bocxk78vocmjq"]
 
 [ext_resource type="PackedScene" uid="uid://cgfgx01ebktag" path="res://Scenes/player.tscn" id="1_b2jon"]
 [ext_resource type="PackedScene" uid="uid://bk1t22g35fiax" path="res://Props/Tree01.glb" id="3_1qfrd"]
 [ext_resource type="Script" path="res://Scripts/enemy_test.gd" id="3_t7efo"]
+[ext_resource type="PackedScene" uid="uid://cgmeuhst7ec6p" path="res://Props/Bench02.glb" id="4_o748t"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_tjy0b"]
 
@@ -70,3 +71,6 @@ transform = Transform3D(0.785209, 0, 0.619231, 0, 1, 0, -0.619231, 0, 0.785209, 
 
 [node name="Tree03" parent="." instance=ExtResource("3_1qfrd")]
 transform = Transform3D(0.50142, 0, 0.865204, 0, 1, 0, -0.865204, 0, 0.50142, -14.024, 1.61097, 23.8683)
+
+[node name="Bench02" parent="." instance=ExtResource("4_o748t")]
+transform = Transform3D(0.806279, 0, -0.591535, 0, 1, 0, 0.591535, 0, 0.806279, -16.9577, 1.18473, 16.7051)
