@@ -13,10 +13,12 @@ sky_material = SubResource("PhysicalSkyMaterial_tjy0b")
 [sub_resource type="Environment" id="Environment_ful8f"]
 background_mode = 2
 sky = SubResource("Sky_d8vbg")
+fog_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.08
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ykaip"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_0qtmf"]
+size = Vector3(100, 1, 100)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rgrgm"]
 albedo_color = Color(0, 0, 0, 1)
@@ -37,13 +39,13 @@ transform = Transform3D(1, 0, 0, 0, 1.72355, 0, 0, 0, 6.97289, -5.46175, 2.15543
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_b2jon")]
 
 [node name="Ground" type="StaticBody3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-shape = SubResource("BoxShape3D_ykaip")
+shape = SubResource("BoxShape3D_0qtmf")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Ground"]
 material_override = SubResource("StandardMaterial3D_rgrgm")
+size = Vector3(100, 1, 100)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 26.4065, 40.764)
