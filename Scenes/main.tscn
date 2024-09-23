@@ -1,10 +1,12 @@
-[gd_scene load_steps=33 format=4 uid="uid://bocxk78vocmjq"]
+[gd_scene load_steps=36 format=4 uid="uid://bocxk78vocmjq"]
 
 [ext_resource type="PackedScene" uid="uid://cgfgx01ebktag" path="res://Scenes/player.tscn" id="1_b2jon"]
 [ext_resource type="PackedScene" uid="uid://bk1t22g35fiax" path="res://Props/Tree01.glb" id="3_1qfrd"]
 [ext_resource type="Shader" path="res://Shaders/ps1.gdshader" id="4_8npaq"]
 [ext_resource type="Material" uid="uid://cpmr2d5pi0yfa" path="res://Shaders/ps1.tres" id="4_lx5pl"]
 [ext_resource type="PackedScene" uid="uid://cgmeuhst7ec6p" path="res://Props/Bench02.glb" id="4_o748t"]
+[ext_resource type="ArrayMesh" uid="uid://bvemj5viq55xb" path="res://Materials/tree_trunk.tres" id="5_v72iq"]
+[ext_resource type="Script" path="res://Scripts/camera_trigger.gd" id="6_dr7g4"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_tjy0b"]
 
@@ -298,8 +300,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_srcsj")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_q06n2"]
+
 [node name="main" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.260398, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 26.4065, 40.764)
 
 [node name="Fog" type="Node3D" parent="."]
 
@@ -307,7 +314,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.260398, 0)
 environment = SubResource("Environment_ful8f")
 
 [node name="FogVolume" type="FogVolume" parent="Fog"]
-transform = Transform3D(1, 0, 0, 0, 1.72355, 0, 0, 0, 6.97289, -5.46175, 2.15543, -7.68756)
+transform = Transform3D(-4.37114e-08, 0, 6.97289, 0, 1.72355, 0, -1, 0, -3.04795e-07, -6.6076, 2.15543, -35.5956)
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_b2jon")]
 
@@ -325,9 +332,6 @@ shape = SubResource("BoxShape3D_0qtmf")
 [node name="CSGBox3D" type="CSGBox3D" parent="Ground"]
 material_override = SubResource("StandardMaterial3D_rgrgm")
 size = Vector3(100, 1, 100)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 26.4065, 40.764)
 
 [node name="Tree01" parent="." instance=ExtResource("3_1qfrd")]
 transform = Transform3D(0.956682, 0, -0.291136, 0, 1, 0, 0.291136, 0, 0.956682, -22.4231, 1.61097, 18.6813)
@@ -374,11 +378,52 @@ mesh = SubResource("ArrayMesh_6nlef")
 [node name="Tree03" parent="." instance=ExtResource("3_1qfrd")]
 transform = Transform3D(0.50142, 0, 0.865204, 0, 1, 0, -0.865204, 0, 0.50142, -14.024, 1.61097, 23.8683)
 
+[node name="Cylinder" parent="Tree03" index="0"]
+mesh = ExtResource("5_v72iq")
+
 [node name="Bench02" parent="." instance=ExtResource("4_o748t")]
 transform = Transform3D(0.806279, 0, -0.591535, 0, 1, 0, 0.591535, 0, 0.806279, -16.9577, 1.18473, 16.7051)
 
-[node name="Cameras" type="Node" parent="."]
+[node name="Cameras" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Cameras"]
+transform = Transform3D(0.640887, 0, 0.767635, 0, 1, 0, -0.767635, 0, 0.640887, -1.45676, 4.23269, 21.613)
+
+[node name="Area3D" type="Area3D" parent="Cameras/Camera3D"]
+transform = Transform3D(21.4309, 0, 5.38687, 0, 7.49083, 0, -7.80022, 0, 14.8003, 9.56475, 0, -10.0595)
+script = ExtResource("6_dr7g4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cameras/Camera3D/Area3D"]
+shape = SubResource("BoxShape3D_q06n2")
+
+[node name="Camera3D2" type="Camera3D" parent="Cameras"]
+transform = Transform3D(-0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, -0.939693, -24.0216, 4.23269, -7.66696)
+
+[node name="Area3D" type="Area3D" parent="Cameras/Camera3D2"]
+transform = Transform3D(11.4031, 0, 13.64, 0, 7.49083, 0, -19.7508, 0, 7.87507, 2.45941, 0, -12.0381)
+script = ExtResource("6_dr7g4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cameras/Camera3D2/Area3D"]
+shape = SubResource("BoxShape3D_q06n2")
+
+[node name="Camera3D3" type="Camera3D" parent="Cameras"]
+transform = Transform3D(-1, 6.18172e-08, -6.18172e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, -19.7051, 8.17279, -28.6991)
+
+[node name="Area3D" type="Area3D" parent="Cameras/Camera3D3"]
+transform = Transform3D(22.4598, -0.919783, -1.93393, 0, 5.29682, -11.137, 3.96027, 5.21635, 10.9678, -3.82143, 6.10602, -10.6078)
+script = ExtResource("6_dr7g4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cameras/Camera3D3/Area3D"]
+shape = SubResource("BoxShape3D_q06n2")
+
+[connection signal="body_entered" from="Cameras/Camera3D/Area3D" to="Cameras/Camera3D/Area3D" method="entering_trigger"]
+[connection signal="body_exited" from="Cameras/Camera3D/Area3D" to="Cameras/Camera3D/Area3D" method="exiting_trigger"]
+[connection signal="body_entered" from="Cameras/Camera3D2/Area3D" to="Cameras/Camera3D2/Area3D" method="entering_trigger"]
+[connection signal="body_exited" from="Cameras/Camera3D2/Area3D" to="Cameras/Camera3D2/Area3D" method="exiting_trigger"]
+[connection signal="body_entered" from="Cameras/Camera3D3/Area3D" to="Cameras/Camera3D3/Area3D" method="entering_trigger"]
+[connection signal="body_exited" from="Cameras/Camera3D3/Area3D" to="Cameras/Camera3D3/Area3D" method="exiting_trigger"]
 
 [editable path="Player"]
 [editable path="Tree01"]
 [editable path="Tree02"]
+[editable path="Tree03"]
