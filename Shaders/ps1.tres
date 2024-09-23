@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cpmr2d5pi0yfa"]
+
+[ext_resource type="Shader" path="res://Shaders/ps1.gdshader" id="1_j7coi"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_j7coi")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)

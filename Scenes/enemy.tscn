@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://blt3ou5xq1xrt"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_test.gd" id="1_cd41q"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_34m0a"]
+
+[node name="Enemy" type="CharacterBody3D" groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.613146, 2.2619, -13.8164)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_cd41q")
+speed = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.285, 0, 0, 0, 1.285, 0, 0, 0, 1.285, -0.220716, 0.143245, -0.110284)
+visibility_parent = NodePath("../CSGSphere3D")
+shape = SubResource("SphereShape3D_34m0a")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.203319, 0.130224, 0)

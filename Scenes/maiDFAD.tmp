@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bocxk78vocmjq"]
+[gd_scene load_steps=12 format=3 uid="uid://bocxk78vocmjq"]
 
 [ext_resource type="PackedScene" uid="uid://cgfgx01ebktag" path="res://Scenes/player.tscn" id="1_b2jon"]
 [ext_resource type="PackedScene" uid="uid://bk1t22g35fiax" path="res://Props/Tree01.glb" id="3_1qfrd"]
-[ext_resource type="Material" uid="uid://cpmr2d5pi0yfa" path="res://Shaders/ps1.tres" id="4_lx5pl"]
+[ext_resource type="Script" path="res://Scripts/enemy_test.gd" id="3_t7efo"]
+[ext_resource type="Material" uid="uid://bdf7ygd4m7ie0" path="res://Shaders/ps1Shader.tres" id="4_dv43i"]
 [ext_resource type="PackedScene" uid="uid://cgmeuhst7ec6p" path="res://Props/Bench02.glb" id="4_o748t"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_tjy0b"]
@@ -22,6 +23,8 @@ size = Vector3(100, 1, 100)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rgrgm"]
 albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_34m0a"]
 
 [node name="main" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.260398, 0)
@@ -48,26 +51,41 @@ size = Vector3(100, 1, 100)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 26.4065, 40.764)
 
+[node name="Enemy" type="CharacterBody3D" parent="." groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.613146, 2.2619, -13.8164)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("3_t7efo")
+speed = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
+transform = Transform3D(1.285, 0, 0, 0, 1.285, 0, 0, 0, 1.285, -0.220716, 0.143245, -0.110284)
+visibility_parent = NodePath("../CSGSphere3D")
+shape = SubResource("SphereShape3D_34m0a")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.203319, 0.130224, 0)
+
 [node name="Tree01" parent="." instance=ExtResource("3_1qfrd")]
 transform = Transform3D(0.956682, 0, -0.291136, 0, 1, 0, 0.291136, 0, 0.956682, -22.4231, 1.61097, 18.6813)
 
 [node name="Cylinder" parent="Tree01" index="0"]
-material_override = ExtResource("4_lx5pl")
+material_override = ExtResource("4_dv43i")
 
 [node name="Cylinder_001" parent="Tree01" index="1"]
-material_override = ExtResource("4_lx5pl")
+material_override = ExtResource("4_dv43i")
 
 [node name="Cylinder_002" parent="Tree01" index="2"]
-material_override = ExtResource("4_lx5pl")
+material_override = ExtResource("4_dv43i")
 
 [node name="Cylinder_003" parent="Tree01" index="3"]
-material_override = ExtResource("4_lx5pl")
+material_override = ExtResource("4_dv43i")
 
 [node name="Cylinder_004" parent="Tree01" index="4"]
-material_override = ExtResource("4_lx5pl")
+material_override = ExtResource("4_dv43i")
 
 [node name="Cylinder_005" parent="Tree01" index="5"]
-material_override = ExtResource("4_lx5pl")
+material_override = ExtResource("4_dv43i")
 
 [node name="Tree02" parent="." instance=ExtResource("3_1qfrd")]
 transform = Transform3D(0.785209, 0, 0.619231, 0, 1, 0, -0.619231, 0, 0.785209, -19.2732, 1.61097, 21.6707)
