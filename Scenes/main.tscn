@@ -13,6 +13,7 @@ sky_material = SubResource("PhysicalSkyMaterial_tjy0b")
 [sub_resource type="Environment" id="Environment_ful8f"]
 background_mode = 2
 sky = SubResource("Sky_d8vbg")
+volumetric_fog_enabled = true
 volumetric_fog_density = 0.08
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ykaip"]
