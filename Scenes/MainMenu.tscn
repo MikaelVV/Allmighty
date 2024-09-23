@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6ssaf51hem7a"]
+[gd_scene load_steps=3 format=3 uid="uid://b6ssaf51hem7a"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenuController.gd" id="1_rkl4s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hmrd4"]
+font_size = 42
 
 [node name="MainMenu" type="Node2D"]
 
@@ -31,6 +34,16 @@ offset_right = 21.0
 offset_bottom = 46.0
 text = "Quit"
 script = ExtResource("1_rkl4s")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -98.0
+offset_top = -210.0
+offset_right = 99.0
+offset_bottom = -97.0
+size_flags_horizontal = 4
+text = "Allmighty"
+label_settings = SubResource("LabelSettings_hmrd4")
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Buttons/StartGameButton" to="Buttons/StartGameButton" method="_on_pressed"]
 [connection signal="pressed" from="Buttons/OptionsButton" to="Buttons/StartGameButton" method="_on_options_button_pressed"]
