@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgfgx01ebktag"]
+[gd_scene load_steps=6 format=3 uid="uid://cgfgx01ebktag"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_pdh2t"]
 [ext_resource type="Script" path="res://Scripts/PauseMenuController.gd" id="2_whot4"]
@@ -7,63 +7,15 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d2c24"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_adpr8"]
+
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07259, 0)
 script = ExtResource("1_pdh2t")
 
 [node name="Pivot" type="Node3D" parent="."]
 
-[node name="Camera3D" type="Camera3D" parent="Pivot"]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2.24932, 3.04183)
-
-[node name="HealthBar" type="ProgressBar" parent="Pivot/Camera3D"]
-offset_right = 172.0
-offset_bottom = 27.0
-step = 1.0
-show_percentage = false
-
-[node name="InventoryMenu" type="Control" parent="Pivot/Camera3D"]
-visible = false
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="Pivot/Camera3D/InventoryMenu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -260.0
-offset_top = -175.5
-offset_right = 260.0
-offset_bottom = 175.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Pivot/Camera3D/InventoryMenu"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -41.0
-offset_top = -156.0
-offset_right = 112.0
-offset_bottom = -93.0
-grow_horizontal = 2
-text = "Inventory"
-
-[node name="PauseMenu" type="Control" parent="Pivot/Camera3D"]
+[node name="PauseMenu" type="Control" parent="Pivot"]
 process_mode = 2
 visible = false
 layout_mode = 3
@@ -80,21 +32,24 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_whot4")
 
-[node name="MarginContainer" type="MarginContainer" parent="Pivot/Camera3D/PauseMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="Pivot/PauseMenu"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Pivot/Camera3D/PauseMenu/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Pivot/PauseMenu/MarginContainer"]
 layout_mode = 2
 
-[node name="ResumeGame" type="Button" parent="Pivot/Camera3D/PauseMenu/MarginContainer/VBoxContainer"]
+[node name="ResumeGame" type="Button" parent="Pivot/PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Resume"
 
-[node name="ReturnToMainMenu" type="Button" parent="Pivot/Camera3D/PauseMenu/MarginContainer/VBoxContainer"]
+[node name="ReturnToMainMenu" type="Button" parent="Pivot/PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Return to Main Menu"
+
+[node name="Camera3D" type="Camera3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2.24932, 3.04183)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_kxr3s")
@@ -102,6 +57,10 @@ mesh = SubResource("CapsuleMesh_kxr3s")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, -3.17046e-09, 0, 1, 0, 3.17046e-09, 0, 1, -2.32831e-10, 0, -7.45058e-09)
 shape = SubResource("CapsuleShape3D_d2c24")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.620016, 0, 0, 0, 0.39387, 0, 0, 0, 0.578933, 0, 0.403446, -0.430294)
+mesh = SubResource("BoxMesh_adpr8")
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(0.999171, 0, 0.0407073, 0, 1, 0, -0.0407073, 0, 0.999171, 0, -0.0934458, -0.062982)
@@ -112,6 +71,6 @@ collision_mask = 4
 transform = Transform3D(1.385, 0, -3.72529e-09, 0, 1.385, 0, 3.72529e-09, 0, 1.385, -2.32831e-10, -0.020776, -7.45058e-09)
 shape = SubResource("CapsuleShape3D_d2c24")
 
-[connection signal="pressed" from="Pivot/Camera3D/PauseMenu/MarginContainer/VBoxContainer/ResumeGame" to="Pivot/Camera3D/PauseMenu" method="_on_resume_game_pressed"]
-[connection signal="pressed" from="Pivot/Camera3D/PauseMenu/MarginContainer/VBoxContainer/ReturnToMainMenu" to="Pivot/Camera3D/PauseMenu" method="_on_return_to_main_menu_pressed"]
+[connection signal="pressed" from="Pivot/PauseMenu/MarginContainer/VBoxContainer/ResumeGame" to="Pivot/PauseMenu" method="_on_resume_game_pressed"]
+[connection signal="pressed" from="Pivot/PauseMenu/MarginContainer/VBoxContainer/ReturnToMainMenu" to="Pivot/PauseMenu" method="_on_return_to_main_menu_pressed"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

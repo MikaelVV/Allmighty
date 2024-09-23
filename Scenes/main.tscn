@@ -13,7 +13,6 @@ sky_material = SubResource("PhysicalSkyMaterial_tjy0b")
 [sub_resource type="Environment" id="Environment_ful8f"]
 background_mode = 2
 sky = SubResource("Sky_d8vbg")
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.08
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ykaip"]
@@ -74,3 +73,5 @@ transform = Transform3D(0.50142, 0, 0.865204, 0, 1, 0, -0.865204, 0, 0.50142, -1
 
 [node name="Bench02" parent="." instance=ExtResource("4_o748t")]
 transform = Transform3D(0.806279, 0, -0.591535, 0, 1, 0, 0.591535, 0, 0.806279, -16.9577, 1.18473, 16.7051)
+
+[node name="Cameras" type="Node" parent="."]
