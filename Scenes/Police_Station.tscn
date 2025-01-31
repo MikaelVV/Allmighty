@@ -6,21 +6,78 @@
 [node name="Node3D" type="Node3D"]
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+material_override = ExtResource("1_y7ei6")
+use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0431, 0, 0.177147)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0431, 0, -6.57981)
 snap = 1e-06
-size = Vector3(40.94, 1, 43)
+size = Vector3(40.94, 1, 81.7864)
 material = ExtResource("1_y7ei6")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.94181, 3.02019, -0.04636)
-size = Vector3(1, 4.95557, 7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.94181, 3.02019, -6.33496)
+size = Vector3(1, 4.95557, 80.8924)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.84678, 2.6306, -0.0860546)
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0786648, -0.180553, 6.15961)
 operation = 2
 size = Vector3(1.30029, 3.75769, 4)
 
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.712271, 0, -0.701905, 0, 1, 0, 0.701905, 0, 0.712271, -11.1402, 1.40802, 0)
+radius = 3.44621
+height = 1.86168
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/CSGCylinder3D"]
+transform = Transform3D(0.681309, 0, -0.731997, 0, 1, 0, 0.731997, 0, 0.681309, -0.640641, 0.0219736, 0.551227)
+operation = 2
+radius = 3.00608
+height = 2.33414
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.00157073, 0, -0.999999, 0, 1, 0, 0.999999, 0, 0.00157073, 2.61386, 2.53705, 13.0044)
+size = Vector3(1, 6.0741, 7.60369)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D3"]
+transform = Transform3D(0.00157074, 0, -1, 0, 1, 0, 1, 0, 0.00157074, 10.0821, 0.685731, 12.9927)
+size = Vector3(1, 6.0741, 22.5401)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D3/CSGBox3D3"]
+transform = Transform3D(0.999549, 0, -0.0299629, 0, 1, 0, 0.0299629, 0, 0.999549, 4.6838, 0.685731, 23.0661)
+size = Vector3(1, 6.0741, 5.59486)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.810203, 2.63617, 23.4392)
+size = Vector3(1, 6.0741, 22.0659)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.55058, 0.735628, -50.2723)
+size = Vector3(1, 6.0741, 22.0659)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(-0.0205063, 0, -0.99979, 0, 1, 0, 0.99979, 0, -0.0205063, 2.73361, 2.39909, -36.6734)
+size = Vector3(1, 6.0741, 7.60369)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D5"]
+transform = Transform3D(0.998748, 0, 0.0500351, 0, 1, 0, -0.0500351, 0, 0.998748, 20.8147, 0.12387, 0.186215)
+size = Vector3(1, 6.0741, 7.60369)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D5"]
+transform = Transform3D(0.00157073, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00157073, 10.4294, 0.0991211, 3.44046)
+size = Vector3(1, 6.0741, 22.0659)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.53568, 3.15071, 34.864)
+size = Vector3(10.0069, 5.20868, 1.63916)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.249226, -0.716002, -0.463619)
+size = Vector3(2.66595, 4.73157, 1)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.0204014, 0, 0.999792, 0, 1, 0, -0.999792, 0, 0.0204014, -13.7951, 2.61344, -47.2217)
+size = Vector3(1, 6.0741, 40.051)
+
 [node name="Player" parent="." instance=ExtResource("2_nq242")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5054, 1.43877, 0.635391)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5317, 3.22542, 0.707655)
