@@ -319,6 +319,12 @@ transform = Transform3D(-4.37114e-08, 0, 6.97289, 0, 1.72355, 0, -1, 0, -3.04795
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_b2jon")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.132866, 2.07259, 0.178635)
 
+[node name="Control" type="Control" parent="Player/Pivot" index="2"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="MeshInstance3D" parent="Player" index="1"]
 mesh = SubResource("CapsuleMesh_qnrhd")
 

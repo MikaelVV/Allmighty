@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwyxr7orlq4ad"]
+
+[ext_resource type="Material" uid="uid://cnxjkvgom2465" path="res://Materials/grid_3d.tres" id="1_y7ei6"]
+[ext_resource type="PackedScene" uid="uid://cgfgx01ebktag" path="res://Scenes/player.tscn" id="2_nq242"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0431, 0, 0.177147)
+snap = 1e-06
+size = Vector3(40.94, 1, 43)
+material = ExtResource("1_y7ei6")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.94181, 3.02019, -0.04636)
+size = Vector3(1, 4.95557, 7)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.84678, 2.6306, -0.0860546)
+operation = 2
+size = Vector3(1.30029, 3.75769, 4)
+
+[node name="Player" parent="." instance=ExtResource("2_nq242")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5054, 1.43877, 0.635391)
