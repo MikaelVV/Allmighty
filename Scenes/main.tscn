@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cgfgx01ebktag" path="res://Scenes/player.tscn" id="1_b2jon"]
 [ext_resource type="PackedScene" uid="uid://bk1t22g35fiax" path="res://Props/Tree01.glb" id="3_1qfrd"]
-[ext_resource type="Shader" path="res://Shaders/ps1.gdshader" id="4_8npaq"]
+[ext_resource type="Shader" uid="uid://b6ie052ixi7cl" path="res://Shaders/ps1.gdshader" id="4_8npaq"]
 [ext_resource type="Material" uid="uid://cpmr2d5pi0yfa" path="res://Shaders/ps1.tres" id="4_lx5pl"]
 [ext_resource type="PackedScene" uid="uid://cgmeuhst7ec6p" path="res://Props/Bench02.glb" id="4_o748t"]
 [ext_resource type="ArrayMesh" uid="uid://bvemj5viq55xb" path="res://Materials/tree_trunk.tres" id="5_v72iq"]
-[ext_resource type="Script" path="res://Scripts/camera_trigger.gd" id="6_dr7g4"]
+[ext_resource type="Script" uid="uid://onor6ngr3swv" path="res://Scripts/camera_trigger.gd" id="6_dr7g4"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_tjy0b"]
 

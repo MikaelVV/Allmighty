@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cgfgx01ebktag"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_pdh2t"]
-[ext_resource type="Script" path="res://Scripts/PauseMenuController.gd" id="2_whot4"]
+[ext_resource type="Script" uid="uid://d2enjqf4xs818" path="res://Scripts/PlayerController.gd" id="1_pdh2t"]
+[ext_resource type="Script" uid="uid://cli2v8k654f1a" path="res://Scripts/PauseMenuController.gd" id="2_whot4"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kxr3s"]
 
